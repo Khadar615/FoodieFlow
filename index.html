@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f45b35">
+  <title>FoodieFlow — Cravings Delivered</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="announcement">Fresh cravings, faster deliveries <span>·</span> Use <b>FLOW10</b> for 10% off orders over ₹399</div>
+  <header class="topbar">
+    <a class="brand" href="#" data-view="home" aria-label="FoodieFlow home"><span class="brand-mark">f</span><span>Foodie<span class="brand-accent">Flow</span><small>Cravings delivered. Happiness served.</small></span></a>
+    <div class="delivery-location"><span class="pin">⌖</span><div><small>Delivering to</small><strong id="deliveryLocation">Chennai, Tamil Nadu</strong></div></div>
+    <form id="searchForm" class="searchbar"><span>⌕</span><input id="searchInput" placeholder="Search dishes, restaurants..." aria-label="Search dishes or restaurants"><button type="submit">Search</button></form>
+    <nav class="top-actions"><button class="nav-link" data-view="restaurants">Explore</button><button class="nav-link" data-view="orders">My orders</button><button class="account-btn" id="accountButton">♙ <span id="accountLabel">Sign in</span></button><button class="cart-button" data-view="cart">Bag <span id="cartCount">0</span></button><button class="mobile-menu" id="mobileMenu" aria-label="Open menu">☰</button></nav>
+  </header>
+
+  <main>
+    <section id="homeView" class="view">
+      <section class="hero">
+        <div class="hero-copy"><span class="eyebrow"><span class="live-dot"></span> GOOD FOOD, GOOD MOOD</span><h1>Your favourite food,<br><em>delivered fast.</em></h1><p>Discover local favourites and delicious new finds, all delivered to your door.</p>
+          <form id="heroSearchForm" class="hero-search"><span>⌕</span><input id="heroSearchInput" placeholder="Try “biryani” or “pizza”"><button type="submit">Find food <span>→</span></button></form>
+          <div class="hero-note"><span>★ 4.8/5</span> Loved by foodies <i>·</i> Demo ratings</div>
+        </div>
+        <div class="hero-visual"><div class="hero-image-wrap"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=1000&q=85" alt="Freshly baked pizza"><div class="floating-card delivery-card"><span class="float-icon">↗</span><div><strong>Quick delivery</strong><small>At your doorstep</small></div></div><div class="floating-card rating-card"><span class="rating-star">★</span><div><strong>4.9 <small>/ 5</small></strong><small>Foodie favourite</small></div></div></div><div class="hero-splash"></div></div>
+      </section>
+      <section class="offer-strip"><div class="offer-icon">%</div><div><strong>A little treat for your first order</strong><span>Use FLOW10 and enjoy 10% off when your cart reaches ₹399.</span></div><button class="text-button" id="copyCoupon">Copy code ↗</button></section>
+      <section class="section-block"><div class="section-heading"><div><span class="eyebrow">WHAT ARE YOU CRAVING?</span><h2>Explore by category</h2></div><button class="text-button" data-view="restaurants">View all food →</button></div><div class="category-grid" id="categoryGrid"></div></section>
+      <section class="section-block restaurants-section"><div class="section-heading"><div><span class="eyebrow">LOCAL LOVES</span><h2>Popular near you</h2><p>Handpicked places for your next delicious moment.</p></div><button class="outline-button" data-view="restaurants">Explore restaurants →</button></div><div class="restaurant-grid" id="homeRestaurants"></div></section>
+      <section class="section-block dish-section"><div class="section-heading"><div><span class="eyebrow">MADE FOR YOUR MOOD</span><h2>Trending dishes</h2></div><button class="text-button" data-view="restaurants">See full menu →</button></div><div class="dish-grid" id="trendingDishes"></div></section>
+      <section class="testimonial"><span class="eyebrow">THE FOODIE FEELING</span><h2>Good food. Great days.</h2><p>“The easiest way to turn a long day into a lovely dinner.”</p><small>— Sample customer review · Demo content</small></section>
+    </section>
+
+    <section id="restaurantsView" class="view hidden">
+      <div class="page-intro"><span class="eyebrow">YOUR NEXT FAVOURITE MEAL</span><h1>Restaurants & menus</h1><p>Explore the menu, find your craving, and add it to your bag.</p></div>
+      <div class="filter-panel"><div class="filter-search"><span>⌕</span><input id="restaurantSearch" placeholder="Search restaurant or dish"></div><select id="cuisineFilter" aria-label="Filter cuisine"><option value="all">All cuisines</option><option>South Indian</option><option>North Indian</option><option>Chinese</option><option>Italian</option><option>Fast Food</option><option>Bakery</option></select><select id="sortFilter" aria-label="Sort restaurants"><option value="popular">Sort: Popular</option><option value="rating">Top rated</option><option value="time">Fastest delivery</option><option value="price">Lowest delivery fee</option></select><label class="check-filter"><input id="vegFilter" type="checkbox"> Veg only</label></div>
+      <p class="results-count" id="resultsCount"></p><div class="restaurant-grid" id="restaurantResults"></div>
+    </section>
+
+    <section id="menuView" class="view hidden">
+      <button class="back-link" data-view="restaurants">← Back to restaurants</button>
+      <div id="restaurantHero"></div><div class="menu-toolbar"><div><span class="eyebrow">THE GOOD STUFF</span><h2>Explore the menu</h2></div><input id="menuSearch" placeholder="Search this menu..." aria-label="Search this menu"></div><div id="menuCategories" class="menu-category-chips"></div><div id="menuItems" class="menu-item-grid"></div>
+    </section>
+
+    <section id="cartView" class="view hidden">
+      <div class="page-intro compact-intro"><span class="eyebrow">YOUR DELICIOUS DECISIONS</span><h1>Your bag</h1><p>Everything you need for a happy meal.</p></div>
+      <div id="cartContent"></div>
+    </section>
+
+    <section id="checkoutView" class="view hidden">
+      <button class="back-link" data-view="cart">← Back to bag</button><div class="page-intro compact-intro"><span class="eyebrow">ALMOST TIME TO EAT</span><h1>Checkout</h1><p>Confirm your details and choose how you’d like to pay.</p></div>
+      <div id="checkoutContent"></div>
+    </section>
+
+    <section id="confirmationView" class="view hidden"><div id="confirmationContent"></div></section>
+    <section id="ordersView" class="view hidden"><div class="page-intro compact-intro"><span class="eyebrow">YOUR FOODIE HISTORY</span><h1>My orders</h1><p>See your previous orders and their demo status.</p></div><div id="ordersContent"></div></section>
+    <section id="accountView" class="view hidden"><div class="page-intro compact-intro"><span class="eyebrow">WELCOME TO FOODIEFLOW</span><h1>Your account</h1><p>Sign in or create a demo account to keep your food journey together.</p></div><div id="accountContent"></div></section>
+    <section id="adminView" class="view hidden"><div class="page-intro compact-intro"><span class="eyebrow">DEMO MANAGEMENT</span><h1>FoodieFlow admin</h1><p>Manage sample menu availability and view demo orders. This local demo is not a secure production admin system.</p></div><div id="adminContent"></div></section>
+  </main>
+
+  <footer class="footer"><div class="footer-top"><a class="brand footer-brand" href="#" data-view="home"><span class="brand-mark">f</span><span>Foodie<span class="brand-accent">Flow</span><small>Cravings delivered. Happiness served.</small></span></a><p>Good food has a way of making everything better.</p><button class="text-button" data-view="restaurants">Find your next meal →</button></div><div class="footer-bottom"><span>© 2026 FoodieFlow · Student project demo</span><span>Sample restaurants, ratings, offers and order statuses are illustrative.</span><button class="footer-admin" id="adminLink">Demo admin</button></div></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="modalRoot"></div>
+  <script src="script.js"></script>
+</body>
+</html>
